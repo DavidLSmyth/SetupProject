@@ -15,8 +15,10 @@ class TestSetupProject(unittest.TestCase):
 		self.test_args1 = ['.', 'test_project', '-docs', '-licence']
 		self.test_args2 = ['.', 'test_project', '-docs', '-licence']
 		
+		os.chdir('../')
 		if os.path.exists('./test_repo') and os.listdir('./test_repo'):
 			try:
+				print('removing {}'.format(os.curdir + '/test_repo'))
 				shutil.rmtree('./test_repo')
 				os.mkdirs('./test_repo')
 			except PermissionError as e:
@@ -24,6 +26,7 @@ class TestSetupProject(unittest.TestCase):
 				print(e)
 			
 	def test_parse_args(self):
+		print('current directory: {}'.format(os.listdir()))
 		args = parse_args(self.test_args)
 		self.assertEqual(args.project_name, 'test_project')
 		self.assertFalse(args.docs)
@@ -49,7 +52,7 @@ class TestSetupProject(unittest.TestCase):
 		'''Removes all intermediate directories'''
 		try:
 			#print("removing all files and subdirectories from  {}".format(os.path.dirname('../test_project_module')))
-			os.chdir(self.base_dir)
+			os.chdir(self.base_dir + '/test_repo')
 			shutil.rmtree('.')
 		except Exception as e:
 			print('Could not clean up temp test directories successfully, please check manually')
