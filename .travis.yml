@@ -7,4 +7,4 @@ install:
 
 script: 
 - cd tests
-- python setup_project_test.py
+- sudo python setup_project_test.py

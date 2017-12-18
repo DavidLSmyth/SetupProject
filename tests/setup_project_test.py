@@ -18,7 +18,7 @@ class TestSetupProject(unittest.TestCase):
 		os.chdir('../')
 		if os.path.exists('./test_repo') and os.listdir('./test_repo'):
 			try:
-				print('removing {}'.format(os.curdir + '/test_repo'))
+				print('Removing all files from {}'.format(os.curdir + '/test_repo'))
 				shutil.rmtree('./test_repo')
 				os.mkdirs('./test_repo')
 			except PermissionError as e:
