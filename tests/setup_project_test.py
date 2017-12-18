@@ -10,7 +10,7 @@ from SetupProject.utils import run_setup_with_args
 
 class TestSetupProject(unittest.TestCase):
 	def setUp(self):
-		self.test_args = ['C:\\Users\\13383861\\Dropbox\\SoftwareDevelopment\\miscProjects\\SetupProject_module', 'test_project', '-docs', '-LICENCE']
+		self.test_args = ['C:\\Users\\13383861\\Dropbox\\SoftwareDevelopment\\miscProjects\\SetupProject_module\\test_repo', 'test_project', '-docs', '-LICENCE']
 		self.test_args1 = ['.', 'test_project', '-docs', '-licence']
 		self.test_args2 = ['.', 'test_project', '-docs', '-licence']
 		os.chdir('./')
@@ -42,7 +42,7 @@ class TestSetupProject(unittest.TestCase):
 		try:
 			#print("removing all files and subdirectories from  {}".format(os.path.dirname('../test_project_module')))
 			os.chdir('..')
-			shutil.rmtree('C:\\Users\\13383861\\Dropbox\\SoftwareDevelopment\\miscProjects\\SetupProject_module')
+			shutil.rmtree('C:\\Users\\13383861\\Dropbox\\SoftwareDevelopment\\miscProjects\\SetupProject_module\\test_repo')
 		except Exception as e:
 			print('Could not clean up temp test directories successfully, please check manually')
 			print(e)

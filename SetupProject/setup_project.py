@@ -8,9 +8,9 @@ import argparse
 import os
 #for recursively manipulating directories over kenneth's directory structure
 import shutil
-
+sys.path.append('..')
 #keep run_setup_with_args in utils file so that program may be extended
-from .utils import run_setup_with_args
+from SetupProject.utils import run_setup_with_args
 
 #usage: python SetupProject.py directory_to_initialise project_name -docs -tests -LICENCE -Makefile -setup.py
 
