@@ -10,11 +10,19 @@ from SetupProject.utils import run_setup_with_args
 
 class TestSetupProject(unittest.TestCase):
 	def setUp(self):
-		self.test_args = ['C:\\Users\\13383861\\Dropbox\\SoftwareDevelopment\\miscProjects\\SetupProject_module\\test_repo', 'test_project', '-docs', '-LICENCE']
+		self.base_dir = os.curdir
+		self.test_args = [self.base_dir + '/test_repo', 'test_project', '-docs', '-LICENCE']
 		self.test_args1 = ['.', 'test_project', '-docs', '-licence']
 		self.test_args2 = ['.', 'test_project', '-docs', '-licence']
-		os.chdir('./')
 		
+		if os.path.exists('./test_repo') and os.listdir('./test_repo'):
+			try:
+				shutil.rmtree('./test_repo')
+				os.mkdirs('./test_repo')
+			except PermissionError as e:
+				print('Attempted to clean test_repo but was denied permission. Tests may not run properly')
+				print(e)
+			
 	def test_parse_args(self):
 		args = parse_args(self.test_args)
 		self.assertEqual(args.project_name, 'test_project')
@@ -41,8 +49,8 @@ class TestSetupProject(unittest.TestCase):
 		'''Removes all intermediate directories'''
 		try:
 			#print("removing all files and subdirectories from  {}".format(os.path.dirname('../test_project_module')))
-			os.chdir('..')
-			shutil.rmtree('C:\\Users\\13383861\\Dropbox\\SoftwareDevelopment\\miscProjects\\SetupProject_module\\test_repo')
+			os.chdir(self.base_dir)
+			shutil.rmtree('.')
 		except Exception as e:
 			print('Could not clean up temp test directories successfully, please check manually')
 			print(e)
