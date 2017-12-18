@@ -5,8 +5,8 @@ import shutil
 import sys
 sys.path.append('..')
 
-from SetupProject.setup_project import parse_args
-from SetupProject.utils import run_setup_with_args
+from setup_project.setup_project_runner import parse_args
+from setup_project.utils import run_setup_with_args
 
 class TestSetupProject(unittest.TestCase):
 	def setUp(self):

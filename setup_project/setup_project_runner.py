@@ -10,7 +10,7 @@ import os
 import shutil
 sys.path.append('..')
 #keep run_setup_with_args in utils file so that program may be extended
-from SetupProject.utils import run_setup_with_args
+from setup_project.utils import run_setup_with_args
 
 #usage: python SetupProject.py directory_to_initialise project_name -docs -tests -LICENCE -Makefile -setup.py
 
