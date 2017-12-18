@@ -6,5 +6,4 @@ install:
 - pip install -r requirements.txt
 
 script: 
-- cd tests
-- sudo python setup_project_test.py
+- sudo python -m unittest tests.setup_project_test
