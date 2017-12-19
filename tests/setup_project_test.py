@@ -19,7 +19,8 @@ class TestSetupProject(unittest.TestCase):
 			try:
 				print('Removing all files from {}'.format(os.curdir + '/test_repo'))
 				shutil.rmtree('./test_repo')
-				os.mkdirs('./test_repo')
+				print('Creating test_repo directory')
+				os.mkdir('./test_repo')
 			except PermissionError as e:
 				print('Attempted to clean test_repo but was denied permission. Tests may not run properly')
 				print(e)

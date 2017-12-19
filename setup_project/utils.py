@@ -64,9 +64,9 @@ def parse_args(args):
 	'-tests':['Whether to include tests subdirectory or not'], 
 	'-LICENCE':['Whether to include licence or not'],
 	'-makefile':['Whether to include makefile or not'],
-	'-setup':['Whether to include setup.py or not'],
+	'-setup.py':['Whether to include setup.py or not'],
 	'-requirements.txt':['Whether to include a requirements file or not'],
-	'-travis.yml':['Whether to include a requirements file or not']
+	'-.travis.yml':['Whether to include a requirements file or not']
 	}
 
 	#'store_true' and 'store_false' - These are special cases of 'store_const' used for storing the values 
