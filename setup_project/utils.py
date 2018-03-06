@@ -1,6 +1,7 @@
 import os
 import shutil
 import argparse
+import sys
 #to copy the github files from kenneth's directory
 from git import Repo
 
@@ -16,6 +17,7 @@ def run_setup_with_args(args):
 		print('Successfully created new project directory: {}'.format(os.curdir+args.project_name + '_module'))
 	except FileExistsError as e:
 		print('The directory already exists, please try again with a different name')
+		sys.exit(0)
 	os.chdir('./' + args.project_name + '_module')
 	#first copy over Kenneth's directory structure and then remove files/directories
 	#specified by the user
@@ -26,13 +28,15 @@ def run_setup_with_args(args):
 	os.rename('./sample',args.project_name)
 
 	#then setup sub files/directories
-	for optional_arg in filter(lambda x: x, vars(args)):
+	for optional_arg in filter(lambda x: not vars(args)[x], vars(args)):
 		arg_path = './' + optional_arg
 		#if directory, remove tree
 		if os.path.isdir(arg_path):
+			print('Removing: {}'.format(arg_path))
 			shutil.rmtree(arg_path)
 		#if file, remove
 		elif os.path.isfile(arg_path):
+			print('Removing: {}'.format(arg_path))
 			os.remove(arg_path)
 			
 			

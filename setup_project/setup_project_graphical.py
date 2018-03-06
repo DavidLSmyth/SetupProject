@@ -3,7 +3,7 @@ from tkinter import (Label, IntVar, StringVar, Button, Entry,
 Checkbutton, W, E, Tk, filedialog, mainloop)
 from utils import parse_args, run_setup_with_args
 
-class MyFirstGUI:
+class PythonProjGUI:
 	def __init__(self, master):
 		self.master = master
 		master.title("Python Project initialiser")
@@ -11,7 +11,7 @@ class MyFirstGUI:
 		self.directory_selector_label = Label(master, text="Root directory to create project: ")
 		self.directory_selector_label.grid(row=0, column=0, sticky=W)
 		self.chosen_directory = StringVar()
-		self.directory_selector = Button(master, text="Browse", command=self.load_file, width=10)
+		self.directory_selector = Button(master, text="Browse", command=self.load_file, width=12)
 		self.directory_selector.grid(row=0, column = 1,sticky = E)
 		
 		self.project_name_label = Label(self.master, text="Choose a project name: ")
@@ -26,6 +26,7 @@ class MyFirstGUI:
 		self.files = ['.travis.yml', 'requirements.txt', 'LICENCE', 'makefile', 'setup.py']
 		self.files_vars = [IntVar() for _ in self.files]
 	
+	
 		self.folder_checkbuttons = []
 		self.file_checkbuttons = []
 		for folder, folder_var in zip(self.folders, self.folders_vars):
@@ -36,7 +37,9 @@ class MyFirstGUI:
 			self.file_checkbuttons.append(Checkbutton(master, text=file, variable=file_var))
 			
 			#.grid(row=row_counter, sticky=W)
-		row_counter = 3
+		self.OptionsLabel = Label(self.master, text="\nCheck to exclude from project:\n")
+		self.OptionsLabel.grid(row = 3, column = 0, sticky = W)
+		row_counter = 5
 		for checkbutton in self.folder_checkbuttons+self.file_checkbuttons:
 			checkbutton.grid(row=row_counter, column=0, sticky=W)
 			row_counter += 1
@@ -54,18 +57,18 @@ class MyFirstGUI:
 	def create_proj(self):
 		args = []
 		for arg, value in zip(self.folders+self.files, self.folders_vars + self.files_vars):
-			if value:
+			if value.get():
 				args.append('-'+arg)
 		args.insert(0, self.project_name.get())
 		args.insert(0, self.directory)
 		print('creating project with args: {}'.format(args))
 		run_setup_with_args(parse_args(args))
-		root.close()
+		root.destroy()
 		
 root = Tk()
-root.geometry('300x300')
-root.resizable(False, False)
-my_gui = MyFirstGUI(root)
+root.geometry('350x350')
+root.resizable(True, False)
+my_gui = PythonProjGUI(root)
 root.mainloop()
 
 
