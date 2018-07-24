@@ -24,9 +24,13 @@ class TestSetupProject(unittest.TestCase):
 			except PermissionError as e:
 				print('Attempted to clean test_repo but was denied permission. Tests may not run properly')
 				print(e)
+		else:
+			print('Test repo exists')
+			os.mkdir('./test_repo')
 			
 	def test_parse_args(self):
 		print('current directory: {}'.format(os.listdir()))
+		print("Testing with args: {}".format(self.test_args))
 		args = parse_args(self.test_args)
 		print('Testing with args: {}'.format(self.test_args))
 		self.assertEqual(args.project_name, 'test_project')
