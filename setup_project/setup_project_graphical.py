@@ -8,18 +8,29 @@ class PythonProjGUI:
 		self.master = master
 		master.title("Python Project initialiser")
 		
+		row_counter = 0
 		self.directory_selector_label = Label(master, text="Root directory to create project: ")
-		self.directory_selector_label.grid(row=0, column=0, sticky=W)
+		self.directory_selector_label.grid(row=row_counter, column=0, sticky=W)
 		self.chosen_directory = StringVar()
 		self.directory_selector = Button(master, text="Browse", command=self.load_file, width=12)
-		self.directory_selector.grid(row=0, column = 1,sticky = E)
+		self.directory_selector.grid(row=row_counter, column = 1,sticky = E)
+		row_counter += 2
 		
 		self.project_name_label = Label(self.master, text="Choose a project name: ")
-		self.project_name_label.grid(row=2, column=0, sticky=W)
+		self.project_name_label.grid(row=row_counter, column=0, sticky=W)
 		
 		self.project_name = StringVar()
 		self.project_name_text = Entry(self.master, textvariable=self.project_name)
-		self.project_name_text.grid(row = 2, column = 1, sticky=E)
+		self.project_name_text.grid(row = row_counter, column = 1, sticky=E)
+		row_counter+=1
+		
+		self.github_repo_label = Label(self.master, text="Specify a GithubRepo to clone from (blank for default): ")
+		self.github_repo_label.grid(row=row_counter, column=0, sticky=W)
+		
+		self.github_repo = StringVar()
+		self.github_repo_text = Entry(self.master, textvariable=self.github_repo)
+		self.github_repo_text.grid(row = row_counter, column = 1, sticky=E)
+		row_counter+=1
 		
 		self.folders = ['tests', 'docs']
 		self.folders_vars = [IntVar() for _ in self.folders]
@@ -38,8 +49,9 @@ class PythonProjGUI:
 			
 			#.grid(row=row_counter, sticky=W)
 		self.OptionsLabel = Label(self.master, text="\nCheck to exclude from project:\n")
-		self.OptionsLabel.grid(row = 3, column = 0, sticky = W)
-		row_counter = 5
+		self.OptionsLabel.grid(row = row_counter, column = 0, sticky = W)
+		row_counter = row_counter + 2
+		
 		for checkbutton in self.folder_checkbuttons+self.file_checkbuttons:
 			checkbutton.grid(row=row_counter, column=0, sticky=W)
 			row_counter += 1
@@ -59,6 +71,9 @@ class PythonProjGUI:
 		for arg, value in zip(self.folders+self.files, self.folders_vars + self.files_vars):
 			if value.get():
 				args.append('-'+arg)
+		if self.github_repo.get():
+			args.append('-repo')
+			args.append(self.github_repo.get())
 		args.insert(0, self.project_name.get())
 		args.insert(0, self.directory)
 		print('creating project with args: {}'.format(args))
