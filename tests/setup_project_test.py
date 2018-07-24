@@ -8,7 +8,7 @@ from setup_project.utils import run_setup_with_args, parse_args
 
 class TestSetupProject(unittest.TestCase):
 	def setUp(self):
-		self.base_dir = os.curdir
+		self.base_dir = os.getcwd()
 		print('self.base_dir: {}'.format(os.listdir()))
 		self.test_args = [self.base_dir + '/test_repo', 'test_project', '-docs', '-LICENCE']
 		self.test_args1 = ['.', 'test_project', '-docs', '-licence']
@@ -28,6 +28,7 @@ class TestSetupProject(unittest.TestCase):
 	def test_parse_args(self):
 		print('current directory: {}'.format(os.listdir()))
 		args = parse_args(self.test_args)
+		print('Testing with args: {}'.format(self.test_args))
 		self.assertEqual(args.project_name, 'test_project')
 		self.assertFalse(args.docs)
 		self.assertFalse(args.LICENCE)

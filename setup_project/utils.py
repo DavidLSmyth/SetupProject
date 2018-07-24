@@ -69,6 +69,7 @@ def validate_directory_exists(dir_path: str)->str:
 	if os.path.exists(dir_path) and os.access(dir_path, os.W_OK):
 		return dir_path
 	else:
+		print('The path that you have specified doesnt exist: {}'.format(dir_path))
 		raise ValueError
 
 
