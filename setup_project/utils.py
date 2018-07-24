@@ -25,7 +25,7 @@ def run_setup_with_args(args, repo_to_clone_from = "https://github.com/DavidLSmy
 	#specified by the user
 	
 	#validate user specified url
-	repo_to_clone_from = validate_repo(args.repo)
+	repo_to_clone_from = validate_repo(args.repo, repo_to_clone_from)
 	
 	print("Cloning from repo: {}".format(repo_to_clone_from))
 	cloned_repo = Repo.clone_from(repo_to_clone_from, '.')
@@ -46,7 +46,7 @@ def run_setup_with_args(args, repo_to_clone_from = "https://github.com/DavidLSmy
 			print('Removing: {}'.format(arg_path))
 			os.remove(arg_path)
 			
-def validate_repo(repo_location: str) -> str:
+def validate_repo(repo_location: str, repo_to_clone_from) -> str:
 	regex = re.compile(
         r'^(?:http|ftp)s?://' # http:// or https://
         r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|' #domain...
