@@ -20,24 +20,9 @@ from setup_project.utils import run_setup_with_args, parse_args
 if __name__ == '__main__':
 	#iterate over all args in the arg_parser and set up directory structure accordingly
 	args = parse_args(sys.argv[1:])
+	print("provided args: ")
 	try:
 		run_setup_with_args(args)
 	except PermissionError as e:
 		print('Could not create directory as specified due to PermissionError: \n{}'.format(e))
 	
-	
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
