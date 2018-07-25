@@ -8,7 +8,7 @@ The SetupProject tool allows you to choose whether you want to include directori
 usage:
 python SetupProject.py directory_to_initialise project_name -docs -tests -LICENCE -Makefile -setup.py -repo REPO
 
-optional arguments remove the specified folder/file name from setup, repo specifies a github repo to copy from. Github repo must be called sample (working on changing this).
+optional arguments remove the specified folder/file name from setup, repo specifies a github repo to copy from. The default is that recommended by Kenneth Reitz: https://github.com/DavidLSmyth/samplemod. Github repo must be called sample (working on changing this).
 
 OR
 
